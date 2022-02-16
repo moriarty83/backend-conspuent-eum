@@ -19,7 +19,19 @@ const commentDelete = (req, res)=>{
 
 // Update
 const commentUpdate = (req, res)=>{
-  
+    try {
+
+        const updatedComment = await Comment.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {new: true}
+        )
+
+        res.status(200).json(updatedComment);
+
+    } catch (err) {
+        return console.log(err);
+    }
 }
 
 // Create
