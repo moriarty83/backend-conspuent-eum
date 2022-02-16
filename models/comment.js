@@ -4,17 +4,17 @@ const Schema = mongoose.Schema
 const commentSchema = mongoose.Schema({
     author: {
         type: Schema.Types.ObjectId,
-        ref: User
+        ref: "User"
     },
 
     videoId: {
         type: Schema.Types.ObjectId,
-        ref: Video
+        ref: "Video"
     },
 
     responseTo: {
         type: Schema.Types.ObjectId,
-        ref: Comment
+        ref: "Comment"
     },
 
     text: {
@@ -22,5 +22,5 @@ const commentSchema = mongoose.Schema({
     }
 })
 
-const Comment = mongoose.model('Comment', commentSchema)
-module.exports = { Comment }
+const Comment = mongoose.model('Comment', commentSchema);
+module.exports = Comment;

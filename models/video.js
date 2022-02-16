@@ -26,5 +26,5 @@ const videoSchema = mongoose.Schema({
     }
 })
 
-const Video = mongoose.model('Video', commentSchema)
-module.exports = { Video }
+const Video = mongoose.model('Video', videoSchema)
+module.exports = Video

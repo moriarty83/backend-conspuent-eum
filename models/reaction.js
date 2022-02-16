@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const videoSchema = mongoose.Schema({
+const reactionSchema = mongoose.Schema({
     instructor: {
         type: String
     },
@@ -26,5 +26,5 @@ const videoSchema = mongoose.Schema({
     }
 })
 
-const Video = mongoose.model('Video', commentSchema)
-module.exports = { Video }
+const Reaction = mongoose.model('Reaction', reactionSchema)
+module.exports = Reaction
