@@ -16,18 +16,48 @@ const videoIndex = (req, res)=>{
 }
 
 // Show
-const videoShow = (req, res)=>{
+const videoShow = async function (req, res) {
+    try {
+        const video = await Video.findById(req.params.id);
 
+        res.status(200).json({video});
+
+    } catch (error) {
+        return console.log(error);
+    }
 }
 
 // Delete
-const videoDelete = (req, res)=>{
-
+const videoDelete = (req, res) => {
+    Video.findByIdAndDelete(req.params.id, (err, deletedVideo) => {
+        if (err) {
+            console.log('Error in Video#destroy:', err) 
+            return res.send("Incomplete Video#destroy controller function");
+        }
+    
+        res.status(200).json(
+            {
+                deletedVideo
+            }
+        );
+    });
 }
 
 // Update
-const videoUpdate = (req, res)=>{
-  
+const videoUpdate = async (req, res) => {
+    try {
+
+        const updatedVideo = await Video.findByIdAndUpdate(
+            req.params.id,
+            req.body,
+            {new: true}
+        )
+
+        res.status(200).json(updatedVideo);
+
+    } catch (err) {
+        return console.log(err);
+    }
 }
 
 // Create
