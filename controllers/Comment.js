@@ -15,9 +15,9 @@ const commentShow = (req, res)=>{
 // Delete
 const commentDelete = async (req, res)=>{
     try {
-        console.log(req.currentUser)
+        const exists = await Comment.findById(req.params.id).count()>0;
+        exists ? console.log("hello") : console.log("goodbye")
         const foundComment = await Comment.findById(req.params.id)
-        console.log()
         if(foundComment.author != req.currentUser){
             return res.status(400).json({
                 status: 400,
@@ -35,8 +35,15 @@ const commentDelete = async (req, res)=>{
 
 
 // Update
-const commentUpdate = (req, res)=>{
+const commentUpdate = async (req, res)=>{
     try {
+        const foundComment = await Comment.findById(req.params.id)
+        if(foundComment.author != req.currentUser){
+            return res.status(400).json({
+                status: 400,
+                message: "Unauthorized",
+            });
+        }
 
         const updatedComment = await Comment.findByIdAndUpdate(
             req.params.id,
