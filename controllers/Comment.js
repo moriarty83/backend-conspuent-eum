@@ -13,9 +13,26 @@ const commentShow = (req, res)=>{
 }
 
 // Delete
-const commentDelete = (req, res)=>{
-
+const commentDelete = async (req, res)=>{
+    try {
+        console.log(req.currentUser)
+        const foundComment = await Comment.findById(req.params.id)
+        console.log()
+        if(foundComment.author != req.currentUser){
+            return res.status(400).json({
+                status: 400,
+                message: "Unauthorized",
+            });
+        }
+        else{
+            res.json(await Comment.findByIdAndRemove(req.params.id))
+        }
+    }
+    catch (error) {
+        res.status(400).json({error})
+    }
 }
+
 
 // Update
 const commentUpdate = (req, res)=>{
@@ -27,8 +44,9 @@ const commentCreate = async (req, res)=>{
     try {
         req.body = {
             author: req.currentUser,
-            videoId: req.params.id,
+            videoId: req.body.videoId,
             text: req.body.text,
+            responseTo: req.body.responseTo
         }
 
         const createdComment = await Comment.create(req.body);
@@ -38,9 +56,6 @@ const commentCreate = async (req, res)=>{
     } catch (err) {
         return console.log(err);
     }
-
-
-
 }
 
 ///////////////////////

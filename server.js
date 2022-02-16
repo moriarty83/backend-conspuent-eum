@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 // Middleware - API Routes
 app.use('/api/v1', routes.User);
 app.use('/api/v1/videos', routes.Video);
+app.use('/api/v1/comments', routes.Comment);
 
 // Listen
 app.listen(port, () => console.log(`Server is running on port ${port}`));

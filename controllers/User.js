@@ -36,7 +36,8 @@ const register = async (req, res) => {
   } catch (error) {
       return res.status(500).json({
           status: 500,
-          message: error || "Something went wrong. Please try again",
+          message: error 
+        //   || "Something went wrong. Please try again",
       });
   }
 };
@@ -77,7 +78,8 @@ const login = async (req, res) => {
   } catch (error) {
       return res.status(500).json({
           status: 500,
-          message: "Something went wrong. Please try again",
+          message: error
+        //   "Something went wrong. Please try again",
       });
   }
 };
