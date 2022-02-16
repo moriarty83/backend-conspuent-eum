@@ -1,52 +1,38 @@
 const express = require('express');
-const Comment = require('../models/Comment')
-
-///////////////////////
-// ROUTER
-///////////////////////
-const router = express.Router();
-
-///////////////////////
-// ROUTES
-///////////////////////
+const {Comment} = require('../models')
 
 // Index
-router.get('/', (req, res)=>{
+const commentIndex = (req, res)=>{
 
-})
-
-// New
-router.get('/new', (req, res)=>{
-
-});
-
-// Delete
-router.delete('/:id', (req, res)=>{
-
-});
-
-// Update
-router.put('/:id', (req, res)=>{
-  
-});
-
-// Create
-router.post('/', (req, res)=>{
-    
-});
-
-// Edit
-router.get('/:id/edit', (req, res)=>{
-
-});
+}
 
 // Show
-router.get('/:id', (req, res)=>{
+const commentShow = (req, res)=>{
 
-});
+}
 
+// Delete
+const commentDelete = (req, res)=>{
+
+}
+
+// Update
+const commentUpdate = (req, res)=>{
+  
+}
+
+// Create
+const commentCreate = (req, res)=>{
+    
+}
 
 ///////////////////////
 // EXPORT
 ///////////////////////
-module.exports = router;
+module.exports = {
+    commentIndex,
+    commentShow,
+    commentDelete,
+    commentUpdate,
+    commentCreate,
+}
