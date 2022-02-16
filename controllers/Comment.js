@@ -15,6 +15,8 @@ const commentShow = (req, res)=>{
 // Delete
 const commentDelete = async (req, res)=>{
     try {
+        const exists = await Comment.findById(req.params.id).count()>0;
+        exists ? console.log("hello") : console.log("goodbye")
         const foundComment = await Comment.findById(req.params.id)
         if(foundComment.author != req.currentUser){
             return res.status(400).json({
