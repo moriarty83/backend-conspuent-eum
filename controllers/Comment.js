@@ -29,6 +29,7 @@ const commentCreate = async (req, res)=>{
             author: req.currentUser,
             videoId: req.params.id,
             text: req.body.text,
+            responseTo: req.body.text,
         }
 
         const createdComment = await Comment.create(req.body);

@@ -1,72 +1,43 @@
-const express = require('express');
-const {Video} = require('../models');
+const {Video} = require('../models')
 
 const videoIndex = (req, res)=>{
-    Video.find({}, (err, foundVideos) => {
-        if (err) console.log('Error in video index: ', err)
 
-        if (!foundVideos) return res.json({
-            message: 'No Videos found in database.'
-        })
-
-        res.status(200).json({ videos: foundVideos});
-        // console.log(foundVideos[foundVideos.length - 1]._id);
-        console.log(foundVideos);
-    });
 }
 
 // Show
-const videoShow = async function (req, res) {
-    try {
-        const video = await Video.findById(req.params.id);
+const videoShow = (req, res)=>{
 
-        res.status(200).json({video});
-
-    } catch (error) {
-        return console.log(error);
-    }
 }
 
 // Delete
-const videoDelete = (req, res) => {
-    Video.findByIdAndDelete(req.params.id, (err, deletedVideo) => {
-        if (err) {
-            console.log('Error in Video#destroy:', err) 
-            return res.send("Incomplete Video#destroy controller function");
-        }
-    
-        res.status(200).json(
-            {
-                deletedVideo
-            }
-        );
-    });
+const videoDelete = (req, res)=>{
+
 }
 
 // Update
-const videoUpdate = async (req, res) => {
+const videoUpdate = (req, res)=>{
+  
+}
+
+// Create
+const videoCreate =  async (req, res)=>{
     try {
+        req.body = {
+            instructor: req.params.instructor,
+            category: req.body.category,
+            courseNumber: req.body.courseNumber,
+            sectionNumber: req.body.sectionNumber,
+            title: req.body.title,
+            vimeoUrl: req.body.vimeoUrl
+        }
 
-        const updatedVideo = await Video.findByIdAndUpdate(
-            req.params.id,
-            req.body,
-            {new: true}
-        )
-
-        res.status(200).json(updatedVideo);
+        const createdVideo = await Video.create(req.body);
+    
+        res.status(201).json(createdComment);
 
     } catch (err) {
         return console.log(err);
     }
-}
-
-// Create
-const videoCreate = (req, res)=>{
-    Video.create(req.body, (err, savedVideo) => {
-        if (err) console.log('Error in video create: ', err)
-
-        res.status(201).json({ video: savedVideo });
-    });
 }
 
 ///////////////////////

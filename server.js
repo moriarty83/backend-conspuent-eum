@@ -1,6 +1,5 @@
-const port = process.env.PORT || 4000;
+const port = 4000;
 const express = require('express');
-require("dotenv").config({ path: "./.env"});
 
 const app = express();
 const cors = require('cors');
@@ -19,8 +18,7 @@ app.use((req, res, next) => {
 });
 
 // Middleware - API Routes
-app.use('/api/v1', routes.User);
-app.use('/api/v1/videos', routes.Video);
+// app.use('/api/v1/_____', routes._____);
 
 // Listen
 app.listen(port, () => console.log(`Server is running on port ${port}`));

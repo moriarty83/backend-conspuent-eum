@@ -1,52 +1,41 @@
-const express = require('express');
-const Reaction = require('../models/Reaction')
-
-///////////////////////
-// ROUTER
-///////////////////////
-const router = express.Router();
+const {Reaction} = require('../models')
 
 ///////////////////////
 // ROUTES
 ///////////////////////
 
-// Index
-router.get('/', (req, res)=>{
+const reactionIndex = (req, res)=>{
 
-})
-
-// New
-router.get('/new', (req, res)=>{
-
-});
-
-// Delete
-router.delete('/:id', (req, res)=>{
-
-});
-
-// Update
-router.put('/:id', (req, res)=>{
-  
-});
-
-// Create
-router.post('/', (req, res)=>{
-    
-});
-
-// Edit
-router.get('/:id/edit', (req, res)=>{
-
-});
+}
 
 // Show
-router.get('/:id', (req, res)=>{
+const reactionShow = (req, res)=>{
 
-});
+}
+
+// Delete
+const reactionDelete = (req, res)=>{
+
+}
+
+// Update
+const reactionUpdate = (req, res)=>{
+  
+}
+
+// Create
+const reactionCreate = (req, res)=>{
+    
+}
 
 
 ///////////////////////
 // EXPORT
 ///////////////////////
-module.exports = router;
+module.exports = {
+    reactionIndex,
+    reactionShow,
+    reactionDelete,
+    reactionUpdate,
+    reactionCreate,
+}
