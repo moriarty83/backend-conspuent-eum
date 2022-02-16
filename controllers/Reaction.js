@@ -1,5 +1,5 @@
 const express = require('express');
-const Reaction = require('../models/Reaction')
+const {Reaction} = require('../models')
 
 ///////////////////////
 // ROUTER
@@ -31,9 +31,25 @@ router.put('/:id', (req, res)=>{
 });
 
 // Create
-router.post('/', (req, res)=>{
-    
-});
+const reactionCreate = async (req, res)=>{
+  try {
+      req.body = {
+          userId: req.currentUser,
+          commentId: req.body.commentId,
+          like: req.body.like,
+      }
+
+      const createdReaction = await Reaction.create(req.body);
+  
+      res.status(201).json(createdReaction);
+
+  } catch (err) {
+      return console.log(err);
+  }
+
+
+
+}
 
 // Edit
 router.get('/:id/edit', (req, res)=>{
@@ -49,4 +65,6 @@ router.get('/:id', (req, res)=>{
 ///////////////////////
 // EXPORT
 ///////////////////////
-module.exports = router;
+module.exports = {
+  reactionCreate,
+}
