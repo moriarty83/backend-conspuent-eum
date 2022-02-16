@@ -35,7 +35,7 @@ const commentDelete = async (req, res)=>{
 
 
 // Update
-const commentUpdate = (req, res)=>{
+const commentUpdate = async (req, res)=>{
     try {
 
         const updatedComment = await Comment.findByIdAndUpdate(

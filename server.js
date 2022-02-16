@@ -22,6 +22,7 @@ app.use((req, res, next) => {
 app.use('/api/v1', routes.User);
 app.use('/api/v1/videos', routes.Video);
 app.use('/api/v1/comments', routes.Comment);
+app.use('/api/v1/reactions', routes.Reaction);
 
 // Listen
 app.listen(port, () => console.log(`Server is running on port ${port}`));
