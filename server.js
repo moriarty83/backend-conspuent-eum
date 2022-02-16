@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 });
 
 // Middleware - API Routes
+app.use('/api/v1', routes.User);
 app.use('/api/v1/videos', routes.Video);
 
 // Listen
