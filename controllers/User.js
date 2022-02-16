@@ -95,8 +95,25 @@ const profile = async (req, res) => {
   }
 };
 
+// Update Page
+const userUpdate = async (req, res) => {
+  try {
+      const updatedUser = await User.findByIdAndUpdate(
+        req.currentUser,
+        req.body,
+        {new: true}
+      );
+
+      res.status(200).json(updatedUser);
+
+  } catch (err) {
+      return console.log(err);
+  }
+};
+
 module.exports = {
   register,
   login,
   profile,
+  userUpdate
 };
