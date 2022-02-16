@@ -1,9 +1,12 @@
-// If all comments will live on the same page as videos, might be
-// better to put comment routes in same file as video routes
+const router = require('express').Router();
+const ctrl = require('../controllers');
 
-// const router = require('express').Router();
-// const ctrl = require('../controllers');
+const Auth = require("../middleware/Auth");
 
-// const Auth = require("../middleware/Auth");
+router.get('/', ctrl.comments.commentIndex);
+router.get('/:id', ctrl.comments.commentShow);
+router.put('/:id', ctrl.comments.commentUpdate);
+router.post('/', Auth, ctrl.comments.commentCreate);
+router.delete('/:id', Auth, ctrl.comments.commentDelete);
 
-// module.exports = router;
+module.exports = router;

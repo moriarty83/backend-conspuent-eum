@@ -14,7 +14,8 @@ const commentSchema = mongoose.Schema({
 
     responseTo: {
         type: Schema.Types.ObjectId,
-        ref: "Comment"
+        ref: "Comment",
+        default: null
     },
 
     text: {
