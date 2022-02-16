@@ -1,5 +1,6 @@
 const express = require('express');
 const {Video} = require('../models');
+const {Comment} = require('../models');
 
 const videoIndex = (req, res)=>{
     Video.find({}, (err, foundVideos) => {
@@ -19,8 +20,9 @@ const videoIndex = (req, res)=>{
 const videoShow = async function (req, res) {
     try {
         const video = await Video.findById(req.params.id);
+        const comments = await Comment.find({videoId: req.params.id}).populate("author");
 
-        res.status(200).json({video});
+        res.status(200).json({video, comments});
 
     } catch (error) {
         return console.log(error);

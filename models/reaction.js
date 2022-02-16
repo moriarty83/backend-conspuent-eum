@@ -1,30 +1,21 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
+// Reacting to comments
 const reactionSchema = mongoose.Schema({
-    instructor: {
-        type: String
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
     },
-    courseNumber: {
-        type: Number
+    commentId: {
+        type: Schema.Types.ObjectId,
+        ref: "Comment"
     },
-
-    sectionNumber: {
-        type: Number
-    },
-
-    title:{
-        type: String
-    },
-
-    vimeoUrl: {
-        type: String
-    },
-
-    category: {
-        type: String
+    like: {
+        type: Boolean,
+        default: false
     }
 })
 
-const Reaction = mongoose.model('Reaction', reactionSchema)
-module.exports = Reaction
+const Reaction = mongoose.model('Reaction', reactionSchema);
+module.exports = Reaction;
