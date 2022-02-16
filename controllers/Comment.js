@@ -1,3 +1,4 @@
+const { text } = require('express');
 const express = require('express');
 const {Comment} = require('../models')
 
@@ -22,8 +23,24 @@ const commentUpdate = (req, res)=>{
 }
 
 // Create
-const commentCreate = (req, res)=>{
+const commentCreate = async (req, res)=>{
+    try {
+        req.body = {
+            author: req.currentUser,
+            videoId: req.params.id,
+            text: req.body.text,
+        }
+
+        const createdComment = await Comment.create(req.body);
     
+        res.status(201).json(createdComment);
+
+    } catch (err) {
+        return console.log(err);
+    }
+
+
+
 }
 
 ///////////////////////
