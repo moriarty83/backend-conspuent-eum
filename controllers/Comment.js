@@ -15,8 +15,6 @@ const commentShow = (req, res)=>{
 // Delete
 const commentDelete = async (req, res)=>{
     try {
-        const exists = await Comment.findById(req.params.id).count()>0;
-        exists ? console.log("hello") : console.log("goodbye")
         const foundComment = await Comment.findById(req.params.id)
         if(foundComment.author != req.currentUser){
             return res.status(400).json({
@@ -51,7 +49,7 @@ const commentUpdate = async (req, res)=>{
             {new: true}
         )
 
-        res.status(200).json(updatedComment);
+        res.status(200).json({updatedComment, status:200});
 
     } catch (err) {
         return console.log(err);
@@ -70,7 +68,7 @@ const commentCreate = async (req, res)=>{
 
         const createdComment = await Comment.create(req.body);
     
-        res.status(201).json(createdComment);
+        res.status(201).json({createdComment, status:201});
 
     } catch (err) {
         return console.log(err);
