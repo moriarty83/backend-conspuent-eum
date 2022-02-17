@@ -1,6 +1,6 @@
 module.exports = {
   Video: require('./Video'),
   User: require('./User'),
-  Comment: require('./Comment'),
+  Comment: require('./comment'),
   Reaction: require('./Reaction')
 }
