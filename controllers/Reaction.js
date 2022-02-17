@@ -44,7 +44,6 @@ const reactionCreate = async (req, res)=>{
     });
 
     if (foundReaction.length > 0) {
-      console.log("Line 47");
       req.body.like = !foundReaction[0].like
       console.log(foundReaction[0]);
       console.log(req.body.like);
