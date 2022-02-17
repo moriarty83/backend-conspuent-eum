@@ -1,6 +1,6 @@
 const { text } = require('express');
 const express = require('express');
-const {comment} = require('../models')
+const {Comment} = require('../models')
 
 // Index
 const commentIndex = (req, res)=>{
