@@ -7,7 +7,7 @@ mongoose.connect(connectionString)
     .catch((err) => console.log(`MongoDB connection error: ${err}`));
 
 module.exports = {
-    Comment: require('./comment'),
+    Comment: require('./Comment'),
     User: require('./User'),
     Reaction: require('./Reaction'),
     Video: require('./Video'),
